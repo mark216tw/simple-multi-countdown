@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">簡單多倒數</string>
+    <string name="active_timer_channel_name">進行中的倒數</string>
+    <string name="active_timer_channel_description">顯示剩餘時間與快速操作</string>
+    <string name="alarm_channel_name">倒數完成鬧鈴</string>
+    <string name="alarm_channel_description">顯示倒數完成與停止鬧鈴操作</string>
+    <string name="time_up">時間到</string>
+    <string name="paused">已暫停</string>
+    <string name="resume">繼續</string>
+    <string name="pause">暫停</string>
+    <string name="stop">停止</string>
+    <string name="add_one_minute">+1 分</string>
+    <string name="dismiss_alarm">停止鬧鈴</string>
+</resources>

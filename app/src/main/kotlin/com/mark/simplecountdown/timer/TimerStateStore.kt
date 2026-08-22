@@ -192,7 +192,7 @@ object TimerStateStore {
 
     @Synchronized
     fun complete(context: Context, id: String): TimerRecord? = update(context, id) { current ->
-        val shouldRing = current.soundEnabled
+        val shouldRing = current.soundEnabled && current.alarmDurationSeconds != 0L
         current.copy(
             active = false,
             paused = false,
@@ -357,5 +357,5 @@ object TimerStateStore {
         Settings.Global.getInt(context.contentResolver, Settings.Global.BOOT_COUNT, -1)
 
     private fun normalizeAlarmDuration(seconds: Long): Long =
-        if (seconds == -1L) -1L else seconds.coerceIn(10L, 600L)
+        if (seconds == -1L || seconds == 0L) seconds else seconds.coerceIn(10L, 300L)
 }

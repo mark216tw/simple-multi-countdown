@@ -1,6 +1,9 @@
 package com.mark.simplecountdown.ui
 
 import android.Manifest
+import android.app.Activity
+import android.content.Context
+import android.content.ContextWrapper
 import android.content.pm.PackageManager
 import android.os.Build
 import androidx.activity.compose.rememberLauncherForActivityResult
@@ -8,10 +11,12 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -19,7 +24,10 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalView
+import androidx.compose.ui.graphics.toArgb
 import androidx.core.content.ContextCompat
+import androidx.core.view.WindowCompat
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -30,6 +38,7 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.NavType
 import androidx.navigation.navArgument
 import com.mark.simplecountdown.AppViewModel
+import com.mark.simplecountdown.model.AppThemeColor
 import com.mark.simplecountdown.model.TimerPreset
 import com.mark.simplecountdown.model.TimerSnapshot
 import com.mark.simplecountdown.ui.home.HomeScreen
@@ -39,6 +48,8 @@ import com.mark.simplecountdown.ui.timer.TimerScreen
 private const val HOME_ROUTE = "home"
 private const val TIMER_ROUTE = "timer/{timerId}"
 
+private data class AppearancePreview(val themeColor: AppThemeColor, val darkMode: Boolean)
+
 @Composable
 fun CountdownApp(viewModel: AppViewModel = viewModel()) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
@@ -47,6 +58,7 @@ fun CountdownApp(viewModel: AppViewModel = viewModel()) {
     val context = LocalContext.current
     val lifecycleOwner = androidx.lifecycle.compose.LocalLifecycleOwner.current
     var pendingPreset by remember { mutableStateOf<TimerPreset?>(null) }
+    var appearancePreview by remember { mutableStateOf<AppearancePreview?>(null) }
 
     fun openTimer(preset: TimerPreset) {
         viewModel.startTimer(preset)?.let { timerId ->
@@ -87,7 +99,20 @@ fun CountdownApp(viewModel: AppViewModel = viewModel()) {
         onDispose { lifecycleOwner.lifecycle.removeObserver(observer) }
     }
 
-    SimpleCountdownTheme(darkTheme = uiState.settings.darkMode) {
+    LaunchedEffect(uiState.settings.themeColor, uiState.settings.darkMode, appearancePreview) {
+        appearancePreview?.takeIf {
+            it.themeColor == uiState.settings.themeColor && it.darkMode == uiState.settings.darkMode
+        }?.let { appearancePreview = null }
+    }
+
+    val displayedThemeColor = appearancePreview?.themeColor ?: uiState.settings.themeColor
+    val displayedDarkMode = appearancePreview?.darkMode ?: uiState.settings.darkMode
+
+    SimpleCountdownTheme(
+        darkTheme = displayedDarkMode,
+        themeColor = displayedThemeColor,
+    ) {
+        SyncNavigationBar(darkTheme = displayedDarkMode)
         if (!uiState.initialized) {
             Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                 CircularProgressIndicator()
@@ -107,6 +132,10 @@ fun CountdownApp(viewModel: AppViewModel = viewModel()) {
                     onSavePresetOrder = viewModel::savePresetOrder,
                     onSaveCustomTimer = viewModel::saveLastCustomTimer,
                     onSaveSettings = viewModel::saveSettings,
+                    onPreviewAppearance = { themeColor, darkMode ->
+                        appearancePreview = AppearancePreview(themeColor, darkMode)
+                    },
+                    onCancelAppearancePreview = { appearancePreview = null },
                     onStartTimer = startTimer,
                     onOpenTimer = { timerId ->
                         navController.navigate("timer/$timerId") { launchSingleTop = true }
@@ -135,4 +164,27 @@ fun CountdownApp(viewModel: AppViewModel = viewModel()) {
             }
         }
     }
+}
+
+@Suppress("DEPRECATION")
+@Composable
+private fun SyncNavigationBar(darkTheme: Boolean) {
+    val view = LocalView.current
+    val activity = view.context.findActivity()
+    val navigationBarColor = MaterialTheme.colorScheme.surface.toArgb()
+    SideEffect {
+        activity?.window?.let { window ->
+            window.navigationBarColor = navigationBarColor
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                window.isNavigationBarContrastEnforced = false
+            }
+            WindowCompat.getInsetsController(window, view).isAppearanceLightNavigationBars = !darkTheme
+        }
+    }
+}
+
+private tailrec fun Context.findActivity(): Activity? = when (this) {
+    is Activity -> this
+    is ContextWrapper -> baseContext.findActivity()
+    else -> null
 }

@@ -73,6 +73,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.zIndex
 import com.mark.simplecountdown.model.AppUiState
+import com.mark.simplecountdown.model.AppThemeColor
 import com.mark.simplecountdown.model.TimerPreset
 import com.mark.simplecountdown.model.TimerSettings
 import com.mark.simplecountdown.ui.components.PresetEditorDialog
@@ -94,6 +95,8 @@ fun HomeScreen(
     onSavePresetOrder: (List<TimerPreset>) -> Unit,
     onSaveCustomTimer: (TimerPreset) -> Unit,
     onSaveSettings: (TimerSettings) -> Unit,
+    onPreviewAppearance: (AppThemeColor, Boolean) -> Unit,
+    onCancelAppearancePreview: () -> Unit,
     onStartTimer: (TimerPreset) -> Unit,
     onOpenTimer: (String) -> Unit,
     onDismissAlarm: (String) -> Unit,
@@ -162,7 +165,16 @@ fun HomeScreen(
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("簡單多倒數") },
+                title = {
+                    Column {
+                        Text("簡單多倒數")
+                        Text(
+                            "您可以同時啟動多個倒數計時",
+                            style = MaterialTheme.typography.bodySmall,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        )
+                    }
+                },
                 actions = {
                     IconButton(onClick = { editorRequest = EditorRequest(null, false) }) {
                         Icon(Icons.Outlined.Add, contentDescription = "新增預設")
@@ -300,7 +312,11 @@ fun HomeScreen(
     if (showSettings) {
         SettingsDialog(
             initialSettings = uiState.settings,
-            onDismiss = { showSettings = false },
+            onDismiss = {
+                showSettings = false
+                onCancelAppearancePreview()
+            },
+            onAppearancePreview = onPreviewAppearance,
             onConfirm = {
                 showSettings = false
                 onSaveSettings(it)

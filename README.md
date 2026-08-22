@@ -13,13 +13,16 @@
 - 同時啟動多個倒數，首頁可逐筆查看及進入控制畫面
 - 暫停、繼續、加 1/5 分鐘、重設與停止
 - 前景服務通知及針對個別倒數的通知快速操作
-- 完成鬧鈴、答答聲，以及 10 秒、30 秒、1/5/10 分鐘或永不停止的鈴響設定
+- 完成鬧鈴、答答聲，以及無聲、10 秒、30 秒、1/5 分鐘或不自動停止的鈴響設定
 - 重新開機後恢復所有進行中的倒數
-- 動態色彩、深色模式、橫向排版與保持螢幕常亮
+- 6 組可即時預覽的主題色、深色模式、橫向排版與保持螢幕常亮
+- 系統底部導覽列會隨 App 主題切換淺色或深色外觀
 
 ## 安裝 APK
 
-執行 Debug 建置後，APK 位於 `app/build/outputs/apk/debug/app-debug.apk`。此 APK 使用 Android Debug 簽章，只適合測試，不應當作正式商店發布版本。
+最新測試版可從 [GitHub Releases](https://github.com/mark216tw/simple-multi-countdown/releases/tag/v1.1.0-debug) 下載。
+
+本機執行 Debug 建置後，APK 位於 `app/build/outputs/apk/debug/app-debug.apk`。這些 APK 使用 Android Debug 簽章，只適合測試，不應當作正式商店發布版本。
 
 ## 技術
 

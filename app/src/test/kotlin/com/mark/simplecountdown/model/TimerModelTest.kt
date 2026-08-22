@@ -37,7 +37,14 @@ class TimerModelTest {
 
     @Test
     fun `alarm duration options include supported values`() {
-        assertEquals(listOf(10L, 30L, 60L, 300L, 600L, -1L), TimerSettings.alarmDurationOptions)
+        assertEquals(listOf(0L, 10L, 30L, 60L, 300L, -1L), TimerSettings.alarmDurationOptions)
+        assertEquals(false, TimerSettings(alarmDurationSeconds = 0).soundEnabled)
+    }
+
+    @Test
+    fun `settings offer six theme colors`() {
+        assertEquals(6, AppThemeColor.entries.size)
+        assertEquals(AppThemeColor.CORAL, TimerSettings().themeColor)
     }
 
     @Test

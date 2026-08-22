@@ -40,7 +40,7 @@ Compose 使用 `collectAsStateWithLifecycle()` 收集狀態。所有預設 CRUD�
 
 - 排序後的預設清單。
 - 上一次自訂倒數。
-- 鬧鈴時間、聲音、常亮與深色模式設定。
+- 鈴響時間（0 代表無聲）、答答聲、常亮、主題色與深色模式設定。
 
 ### 原生計時狀態
 
@@ -60,7 +60,7 @@ SharedPreferences 檔名：`native_timer_state_v1`，其中 `timer_records_v2` �
 Inactive -> Running <-> Paused -> Ringing -> Completed
 ```
 
-若關閉完成提示音，`Running` 會直接進入 `Completed`。
+若鈴響時間選擇「無聲」（0 秒），`Running` 會直接進入 `Completed`，只顯示完成通知。
 
 ## 前景服務
 
@@ -81,7 +81,10 @@ Inactive -> Running <-> Paused -> Ringing -> Completed
 - App 顯示名稱：簡單多倒數。
 - Package ID：`com.example.simplecountdown3`。
 - 多個倒數可同時執行，並可逐筆操作。
-- 鈴響時間選項：10 秒、30 秒、1 分鐘、5 分鐘、10 分鐘及永不自動停止。
+- 鈴響時間選項：無聲、10 秒、30 秒、1 分鐘、5 分鐘及不自動停止。
+- 主題色：珊瑚紅、海洋藍綠、森林綠、紫羅蘭、琥珀金及天空藍，各自包含淺色及深色配色。
+- 設定對話框以 Compose 暫存狀態即時預覽主題色與深色模式，取消時清除預覽，儲存後由 DataStore 狀態接手。
+- 系統底部導覽列使用目前主題表面色，圖示明暗跟隨深色模式。
 - 倒數時間範圍：1 秒至 `99:59:59`。
 - 支援 Android 7.0（API 24）以上。
 

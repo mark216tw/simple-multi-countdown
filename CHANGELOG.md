@@ -4,10 +4,17 @@
 
 ## [Unreleased]
 
+## [1.1.0] - 2026-08-22
+
 ### Changed
 
+- 系統底部導覽列會跟隨 App 主題顯示對應背景及明暗圖示。
+- 首頁標題下方新增多倒數功能說明。
+- 「倒數完成鈴響時間」新增無聲選項，並移除獨立的完成提示音開關。
+- 設定開關調整為深色模式、倒數畫面保持常亮、倒數進行時播放答答聲的順序。
+- 主題色及深色模式改為點選後立即預覽，取消時恢復原設定。
 - App 名稱改為「簡單多倒數」，Package ID 改為 `com.example.simplecountdown3`。
-- 鈴響時間移除 15、20、25 分鐘，新增 10 秒與 30 秒。
+- 鈴響時間移除 10、15、20、25 分鐘，新增 10 秒與 30 秒，並將無限鈴響文案改為「不自動停止」。
 - 改善預設卡片拖曳時的手指同步與換位動畫。
 - 放大倒數畫面的時間字型。
 - 將設定對話框標題簡化為「設定」。
@@ -15,6 +22,7 @@
 
 ### Added
 
+- 新增珊瑚紅、海洋藍綠、森林綠、紫羅蘭、琥珀金及天空藍 6 組淺色／深色主題。
 - 支援多個倒數同時運行、個別控制、背景持續計時與開機恢復。
 - 首頁新增可捲動的活動倒數清單。
 - 新增 4 種預設識別色，色盤增加至 12 色。
@@ -30,5 +38,6 @@
 - 完成提示音、答答聲、常亮、深色模式與動態色彩設定。
 - DataStore 持久化、單元測試、Compose 啟動測試與 Android lint。
 
-[Unreleased]: https://github.com/mark216tw/simple-multi-countdown/compare/v1.0.0...HEAD
-[1.0.0]: https://github.com/mark216tw/simple-multi-countdown/releases/tag/v1.0.0
+[Unreleased]: https://github.com/mark216tw/simple-multi-countdown/compare/v1.1.0-debug...HEAD
+[1.1.0]: https://github.com/mark216tw/simple-multi-countdown/releases/tag/v1.1.0-debug
+[1.0.0]: https://github.com/mark216tw/simple-multi-countdown/releases/tag/v1.0.0-debug

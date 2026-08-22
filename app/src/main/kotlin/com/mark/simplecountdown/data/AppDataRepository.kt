@@ -10,6 +10,7 @@ import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
 import com.mark.simplecountdown.model.TimerPreset
 import com.mark.simplecountdown.model.TimerSettings
+import com.mark.simplecountdown.model.AppThemeColor
 import java.io.IOException
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
@@ -34,6 +35,7 @@ class AppDataRepository(private val context: Context) {
         val tickSoundEnabled = booleanPreferencesKey("tick_sound_enabled")
         val keepScreenOn = booleanPreferencesKey("keep_screen_on")
         val darkMode = booleanPreferencesKey("dark_mode")
+        val themeColor = stringPreferencesKey("theme_color")
     }
 
     val data: Flow<StoredAppData> = context.appDataStore.data
@@ -62,24 +64,28 @@ class AppDataRepository(private val context: Context) {
             preferences[Keys.tickSoundEnabled] = settings.tickSoundEnabled
             preferences[Keys.keepScreenOn] = settings.keepScreenOn
             preferences[Keys.darkMode] = settings.darkMode
+            preferences[Keys.themeColor] = settings.themeColor.name
         }
     }
 
     private fun decode(preferences: Preferences): StoredAppData {
         val presets = preferences[Keys.presets]?.let(::decodePresets) ?: TimerPreset.defaults
         val lastCustom = preferences[Keys.lastCustomTimer]?.let(::decodePreset)
-        val alarmDuration = preferences[Keys.alarmDuration]
+        val storedAlarmDuration = preferences[Keys.alarmDuration]
             ?.takeIf { it in TimerSettings.alarmDurationOptions }
             ?: 60L
+        val alarmDuration = if (preferences[Keys.soundEnabled] == false) 0L else storedAlarmDuration
         return StoredAppData(
             presets = presets,
             lastCustomTimer = lastCustom,
             settings = TimerSettings(
                 alarmDurationSeconds = alarmDuration,
-                soundEnabled = preferences[Keys.soundEnabled] ?: true,
                 tickSoundEnabled = preferences[Keys.tickSoundEnabled] ?: false,
                 keepScreenOn = preferences[Keys.keepScreenOn] ?: false,
                 darkMode = preferences[Keys.darkMode] ?: false,
+                themeColor = preferences[Keys.themeColor]
+                    ?.let { stored -> AppThemeColor.entries.firstOrNull { it.name == stored } }
+                    ?: AppThemeColor.CORAL,
             ),
         )
     }

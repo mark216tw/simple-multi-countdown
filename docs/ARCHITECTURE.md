@@ -78,7 +78,7 @@ Inactive -> Running <-> Paused -> Ringing -> Completed
 
 ## 產品規格
 
-- App 顯示名稱：簡單多倒數。
+- App 顯示名稱：簡單多重倒數。
 - Package ID：`com.example.simplecountdown3`。
 - 多個倒數可同時執行，並可逐筆操作。
 - 鈴響時間選項：無聲、10 秒、30 秒、1 分鐘、5 分鐘及不自動停止。
@@ -87,6 +87,14 @@ Inactive -> Running <-> Paused -> Ringing -> Completed
 - 系統底部導覽列使用目前主題表面色，圖示明暗跟隨深色模式。
 - 倒數時間範圍：1 秒至 `99:59:59`。
 - 支援 Android 7.0（API 24）以上。
+
+## App 圖示
+
+- Adaptive icon 畫布：`108 × 108 dp`，由背景與前景兩層組成。
+- 外框裁切區：置中的 `72 × 72 dp`（座標 `18..90`）。
+- 核心安全區：置中的 `66 × 66 dp`（座標 `21..87`）。
+- 前景核心圖案為粗線條幾何沙漏，使用安全區的 80%，實際尺寸為 `52.8 × 52.8 dp`（座標 `27.6..80.4`）。
+- Android 13 以上提供 monochrome themed icon；Android 7 至 7.1 使用同構圖案的 legacy vector fallback。
 
 ## Android 權限
 

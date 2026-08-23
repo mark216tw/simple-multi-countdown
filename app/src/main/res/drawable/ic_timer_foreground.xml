@@ -4,10 +4,30 @@
     android:height="108dp"
     android:viewportWidth="108"
     android:viewportHeight="108">
+    <!-- The 66dp safe-zone artwork is scaled to 80%, spanning x/y 27.6..80.4. -->
+    <group
+        android:pivotX="54"
+        android:pivotY="54"
+        android:scaleX="0.8"
+        android:scaleY="0.8">
+    <path
+        android:fillColor="#2D2522"
+        android:pathData="M25,21h58c2.2,0 4,1.8 4,4v6H21v-6c0,-2.2 1.8,-4 4,-4zM21,77h66v6c0,2.2 -1.8,4 -4,4H25c-2.2,0 -4,-1.8 -4,-4z" />
+    <path
+        android:fillColor="#FFD166"
+        android:pathData="M26,25h56v3H26zM26,80h56v3H26z" />
+    <path
+        android:fillColor="#2D2522"
+        android:pathData="M29,29h50c0,12 -6.8,18.2 -16.5,25C72.2,60.8 79,67 79,79H29c0,-12 6.8,-18.2 16.5,-25C35.8,47.2 29,41 29,29z" />
+    <path
+        android:fillColor="#BCEAF2"
+        android:pathData="M35,33h38c-0.8,7.8 -6.5,13.2 -15.2,19.3L55.4,54l2.4,1.7C66.5,61.8 72.2,67.2 73,75H35c0.8,-7.8 6.5,-13.2 15.2,-19.3l2.4,-1.7 -2.4,-1.7C41.5,46.2 35.8,40.8 35,33z" />
+    <path
+        android:fillColor="#FF6B6B"
+        android:pathData="M38,35h32c-1.2,4.3 -4.6,8 -10.2,12H48.2C42.6,43 39.2,39.3 38,35zM52,47h4v20h-4zM39,72c3.7,-6.2 8.8,-9 15,-9s11.3,2.8 15,9z" />
     <path
         android:fillColor="#FFFFFF"
-        android:pathData="M54,25A29,29 0,1 0,54 83A29,29 0,0 0,54 25zM54,75A21,21 0,1 1,54 33A21,21 0,0 1,54 75z" />
-    <path
-        android:fillColor="#FFFFFF"
-        android:pathData="M50,18h8v8h-8zM51,38h6v18h-6zM54,53l14,8 -3,5 -14,-8z" />
+        android:fillAlpha="0.82"
+        android:pathData="M39,38h3c0.8,3.7 3.2,6.5 7,9.4l-2.3,1.8C42.2,46 39.7,42.5 39,38zM39,69c1.3,-3.2 3.7,-6 7.2,-8.7l2.4,1.8c-3,2.3 -5,4.6 -6.2,6.9z" />
+    </group>
 </vector>

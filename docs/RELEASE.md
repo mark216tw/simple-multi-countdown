@@ -27,12 +27,24 @@
 
 ## 建立 GitHub Release
 
+### Debug 測試版
+
+Debug APK 必須使用 `-debug` tag、在標題與說明中註明「Debug 版本」，並設定為 GitHub Pre-release：
+
+```powershell
+gh release create v1.2.0-debug app-debug.apk --prerelease --title "簡單多重倒數 v1.2.0 Debug" --notes "Debug 版本，僅供測試與功能驗收。"
+```
+
+Debug APK 不得標示為正式版本，也不適合提交應用程式商店。
+
+### 正式版本
+
 正式 APK 通過驗證後，可建立 tag 與 GitHub Release：
 
 ```powershell
 git tag v1.0.0
 git push origin v1.0.0
-gh release create v1.0.0 path\to\signed-release.apk --title "簡單多倒數 v1.0.0" --notes-file CHANGELOG.md
+gh release create v1.0.0 path\to\signed-release.apk --title "簡單多重倒數 v1.0.0" --notes-file CHANGELOG.md
 ```
 
 Release 附件應使用清楚名稱，例如 `simple-multi-countdown-v1.0.0.apk`，並在說明中標示最低 Android 版本、Package ID、簽章類型與重要變更。

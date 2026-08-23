@@ -167,7 +167,7 @@ fun HomeScreen(
             TopAppBar(
                 title = {
                     Column {
-                        Text("簡單多倒數")
+                        Text("簡單多重倒數")
                         Text(
                             "您可以同時啟動多個倒數計時",
                             style = MaterialTheme.typography.bodySmall,

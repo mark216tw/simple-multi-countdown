@@ -1,8 +1,8 @@
-# 簡單多倒數
+# 簡單多重倒數
 
 以 Kotlin、Jetpack Compose 和 Material 3 實作，可同時運行多個倒數的 Android 計時器。
 
-- App 名稱：簡單多倒數
+- App 名稱：簡單多重倒數
 - Package ID：`com.example.simplecountdown3`
 - 支援版本：Android 7.0（API 24）以上
 
@@ -20,7 +20,7 @@
 
 ## 安裝 APK
 
-最新測試版可從 [GitHub Releases](https://github.com/mark216tw/simple-multi-countdown/releases/tag/v1.1.0-debug) 下載。
+最新 Debug 測試版可從 [GitHub Releases](https://github.com/mark216tw/simple-multi-countdown/releases/tag/v1.2.0-debug) 下載。此版本標示為 Pre-release，不是正式發布版本。
 
 本機執行 Debug 建置後，APK 位於 `app/build/outputs/apk/debug/app-debug.apk`。這些 APK 使用 Android Debug 簽章，只適合測試，不應當作正式商店發布版本。
 

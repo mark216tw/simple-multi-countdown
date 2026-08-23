@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">簡單多倒數</string>
+    <string name="app_name">簡單多重倒數</string>
     <string name="active_timer_channel_name">進行中的倒數</string>
     <string name="active_timer_channel_description">顯示剩餘時間與快速操作</string>
     <string name="alarm_channel_name">倒數完成鬧鈴</string>

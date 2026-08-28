@@ -229,6 +229,7 @@ fun HomeScreen(
                                 name = timer.name,
                                 remainingSeconds = timer.remainingSeconds,
                                 paused = timer.paused,
+                                colorValue = timer.colorValue,
                                 onClick = { onOpenTimer(timer.id) },
                                 modifier = Modifier.padding(horizontal = 16.dp, vertical = 4.dp),
                             )
@@ -360,7 +361,7 @@ private fun PresetCard(
     onDragFinished: () -> Unit,
 ) {
     val color = Color(preset.colorValue)
-    val foreground = if (color.luminance() < 0.5f) Color.White else Color.Black
+    val foreground = if (color.luminance() > 0.179f) Color.Black else Color.White
     var menuExpanded by remember { mutableStateOf(false) }
 
     Card(
@@ -488,30 +489,44 @@ private fun ActiveTimerCard(
     name: String,
     remainingSeconds: Long,
     paused: Boolean,
+    colorValue: Int,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
+    val identifierColor = Color(colorValue)
+    val contentColor = if (identifierColor.luminance() > 0.179f) Color.Black else Color.White
     Card(
         onClick = onClick,
         modifier = modifier.fillMaxWidth(),
         shape = RoundedCornerShape(24.dp),
-        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.primaryContainer),
+        colors = CardDefaults.cardColors(containerColor = identifierColor),
     ) {
-        ListItem(
-            leadingContent = { Icon(Icons.Outlined.HourglassTop, contentDescription = null) },
-            headlineContent = { Text(name) },
-            supportingContent = { Text(if (paused) "已暫停" else "倒數進行中") },
-            trailingContent = {
+        Row(
+            modifier = Modifier.padding(horizontal = 18.dp, vertical = 14.dp),
+            verticalAlignment = Alignment.CenterVertically,
+        ) {
+            Icon(
+                Icons.Outlined.HourglassTop,
+                contentDescription = null,
+                tint = contentColor,
+            )
+            Spacer(Modifier.width(16.dp))
+            Column(modifier = Modifier.weight(1f)) {
+                Text(name, color = contentColor, fontWeight = FontWeight.Bold)
                 Text(
-                    formatDuration(remainingSeconds),
-                    style = MaterialTheme.typography.titleLarge,
-                    fontWeight = FontWeight.Bold,
+                    if (paused) "已暫停" else "倒數進行中",
+                    color = contentColor.copy(alpha = 0.78f),
+                    style = MaterialTheme.typography.bodyMedium,
                 )
-            },
-            colors = androidx.compose.material3.ListItemDefaults.colors(
-                containerColor = Color.Transparent,
-            ),
-        )
+            }
+            Spacer(Modifier.width(12.dp))
+            Text(
+                formatDuration(remainingSeconds),
+                color = contentColor,
+                style = MaterialTheme.typography.titleLarge,
+                fontWeight = FontWeight.Bold,
+            )
+        }
     }
 }
 

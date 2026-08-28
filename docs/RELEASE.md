@@ -32,7 +32,7 @@
 Debug APK 必須使用 `-debug` tag、在標題與說明中註明「Debug 版本」，並設定為 GitHub Pre-release：
 
 ```powershell
-gh release create v1.2.0-debug app-debug.apk --prerelease --title "簡單多重倒數 v1.2.0 Debug" --notes "Debug 版本，僅供測試與功能驗收。"
+gh release create v1.3.0-debug app-debug.apk --prerelease --title "簡單多重倒數 v1.3.0 Debug" --notes "Debug 版本，僅供測試與功能驗收。"
 ```
 
 Debug APK 不得標示為正式版本，也不適合提交應用程式商店。

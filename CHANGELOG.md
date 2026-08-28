@@ -4,6 +4,18 @@
 
 ## [Unreleased]
 
+## [1.3.0] - 2026-08-28
+
+### Changed
+
+- 首頁上方的活動倒數卡片改用各計時器識別色，並自動使用高對比文字與圖示。
+- 鈴響時間的已選項使用實心主色、高對比粗體文字及勾選圖示。
+- 倒數識別色色盤由 12 色增加至 20 色，並改善黑／白前景的對比判斷。
+
+### Added
+
+- 新增可重用的 OpenCode Android Compose 多重倒數開發與 Debug Pre-release skill。
+
 ## [1.2.0] - 2026-08-22
 
 ### Changed
@@ -46,7 +58,8 @@
 - 完成提示音、答答聲、常亮、深色模式與動態色彩設定。
 - DataStore 持久化、單元測試、Compose 啟動測試與 Android lint。
 
-[Unreleased]: https://github.com/mark216tw/simple-multi-countdown/compare/v1.2.0-debug...HEAD
+[Unreleased]: https://github.com/mark216tw/simple-multi-countdown/compare/v1.3.0-debug...HEAD
+[1.3.0]: https://github.com/mark216tw/simple-multi-countdown/releases/tag/v1.3.0-debug
 [1.2.0]: https://github.com/mark216tw/simple-multi-countdown/releases/tag/v1.2.0-debug
 [1.1.0]: https://github.com/mark216tw/simple-multi-countdown/releases/tag/v1.1.0-debug
 [1.0.0]: https://github.com/mark216tw/simple-multi-countdown/releases/tag/v1.0.0-debug

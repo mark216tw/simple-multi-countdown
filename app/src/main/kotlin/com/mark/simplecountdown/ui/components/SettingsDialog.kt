@@ -14,10 +14,13 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.Check
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.FilterChip
 import androidx.compose.material3.FilterChipDefaults
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
@@ -74,6 +77,7 @@ fun SettingsDialog(
                                         fontWeight = if (selected) FontWeight.Bold else FontWeight.Normal,
                                     )
                                 },
+                                leadingIcon = selectedChipIcon(selected),
                                 colors = FilterChipDefaults.filterChipColors(
                                     selectedContainerColor = MaterialTheme.colorScheme.primary,
                                     selectedLabelColor = MaterialTheme.colorScheme.onPrimary,
@@ -143,6 +147,18 @@ fun SettingsDialog(
         },
         dismissButton = { TextButton(onClick = onDismiss) { Text("取消") } },
     )
+}
+
+private fun selectedChipIcon(selected: Boolean): (@Composable () -> Unit)? = if (selected) {
+    {
+        Icon(
+            Icons.Rounded.Check,
+            contentDescription = "已選擇",
+            modifier = Modifier.size(18.dp),
+        )
+    }
+} else {
+    null
 }
 
 @Composable

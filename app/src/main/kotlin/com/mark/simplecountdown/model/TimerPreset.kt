@@ -27,6 +27,37 @@ data class TimerPreset(
             0xFF00A6FB.toInt(),
             0xFF4F46E5.toInt(),
             0xFF475569.toInt(),
+            0xFF84CC16.toInt(),
+            0xFF10B981.toInt(),
+            0xFF06B6D4.toInt(),
+            0xFF1E3A8A.toInt(),
+            0xFFA855F7.toInt(),
+            0xFFDB2777.toInt(),
+            0xFFFB7185.toInt(),
+            0xFFCA8A04.toInt(),
+        )
+
+        val colorNames = listOf(
+            "紅色",
+            "黃色",
+            "綠色",
+            "藍色",
+            "紫色",
+            "粉紅色",
+            "青綠色",
+            "棕色",
+            "橘色",
+            "天藍色",
+            "靛藍色",
+            "灰色",
+            "萊姆綠",
+            "翠綠色",
+            "湖水藍",
+            "海軍藍",
+            "薰衣草紫",
+            "洋紅色",
+            "珊瑚粉",
+            "金色",
         )
     }
 }

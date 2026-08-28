@@ -122,27 +122,13 @@ fun PresetEditorDialog(
                 Spacer(Modifier.height(20.dp))
                 Text("識別色", style = MaterialTheme.typography.labelLarge)
                 Spacer(Modifier.height(10.dp))
-                val colorNames = listOf(
-                    "紅色",
-                    "黃色",
-                    "綠色",
-                    "藍色",
-                    "紫色",
-                    "粉紅色",
-                    "青綠色",
-                    "棕色",
-                    "橘色",
-                    "天藍色",
-                    "靛藍色",
-                    "灰色",
-                )
                 Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
                     TimerPreset.colors.chunked(4).forEachIndexed { rowIndex, rowColors ->
                         Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
                             rowColors.forEachIndexed { columnIndex, colorValue ->
                                 val selected = colorValue == selectedColor
                                 val color = Color(colorValue)
-                                val colorName = colorNames[rowIndex * 4 + columnIndex]
+                                val colorName = TimerPreset.colorNames[rowIndex * 4 + columnIndex]
                                 Surface(
                                     modifier = Modifier
                                         .size(44.dp)
@@ -166,7 +152,7 @@ fun PresetEditorDialog(
                                             Icons.Rounded.Check,
                                             contentDescription = "已選擇顏色",
                                             modifier = Modifier.padding(10.dp),
-                                            tint = if (color.luminance() < 0.5f) Color.White else Color.Black,
+                                            tint = if (color.luminance() > 0.179f) Color.Black else Color.White,
                                         )
                                     }
                                 }

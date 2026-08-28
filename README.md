@@ -9,7 +9,7 @@
 ## 功能
 
 - 建立、編輯、複製、刪除與拖曳排序倒數預設
-- 12 種預設識別色與自訂倒數
+- 20 種預設識別色與自訂倒數
 - 同時啟動多個倒數，首頁可逐筆查看及進入控制畫面
 - 暫停、繼續、加 1/5 分鐘、重設與停止
 - 前景服務通知及針對個別倒數的通知快速操作
@@ -20,7 +20,7 @@
 
 ## 安裝 APK
 
-最新 Debug 測試版可從 [GitHub Releases](https://github.com/mark216tw/simple-multi-countdown/releases/tag/v1.2.0-debug) 下載。此版本標示為 Pre-release，不是正式發布版本。
+最新 Debug 測試版可從 [GitHub Releases](https://github.com/mark216tw/simple-multi-countdown/releases/tag/v1.3.0-debug) 下載。此版本標示為 Pre-release，不是正式發布版本。
 
 本機執行 Debug 建置後，APK 位於 `app/build/outputs/apk/debug/app-debug.apk`。這些 APK 使用 Android Debug 簽章，只適合測試，不應當作正式商店發布版本。
 
@@ -58,6 +58,7 @@
 - [發布流程](docs/RELEASE.md)
 - [隱私權說明](PRIVACY.md)
 - [版本紀錄](CHANGELOG.md)
+- [OpenCode Android 多重倒數 Skill](.opencode/skills/android-compose-multi-timer/SKILL.md)
 
 ## 隱私與授權
 

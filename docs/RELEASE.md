@@ -2,7 +2,7 @@
 
 ## 目前 APK 狀態
 
-本機執行 `assembleDebug` 產生的 `app/build/outputs/apk/debug/app-debug.apk` 使用 Android Debug 簽章，只供測試與功能驗收，不適合正式發布或提交商店。
+本機執行 `assemblePrerelease` 產生的 `app/build/outputs/apk/prerelease/app-prerelease.apk` 會啟用 R8 壓縮並使用 Android Debug 金鑰簽署，只供測試與功能驗收，不適合正式發布或提交商店。
 
 ## 發布前檢查
 
@@ -11,7 +11,7 @@
 3. 執行完整驗證：
 
 ```powershell
-.\gradlew.bat clean testDebugUnitTest lintDebug assembleDebug assembleDebugAndroidTest
+.\gradlew.bat clean testDebugUnitTest lintPrerelease assemblePrerelease
 ```
 
 4. 在 Android 13、14、15 以上實機測試通知、前景服務、鎖屏與重新開機。
@@ -27,15 +27,15 @@
 
 ## 建立 GitHub Release
 
-### Debug 測試版
+### Prerelease 測試版
 
-Debug APK 必須使用 `-debug` tag、在標題與說明中註明「Debug 版本」，並設定為 GitHub Pre-release：
+測試 APK 使用 `prerelease` Build Type、R8 壓縮及 Android Debug 簽章，GitHub Release 必須設定為 Pre-release，並在標題與說明清楚標示測試用途：
 
 ```powershell
-gh release create v1.3.0-debug app-debug.apk --prerelease --title "簡單多重倒數 v1.3.0 Debug" --notes "Debug 版本，僅供測試與功能驗收。"
+gh release upload v1.3.0-debug app-prerelease.apk --clobber
 ```
 
-Debug APK 不得標示為正式版本，也不適合提交應用程式商店。
+Prerelease APK 不得標示為正式版本，也不適合提交應用程式商店。
 
 ### 正式版本
 

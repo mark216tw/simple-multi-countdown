@@ -11,13 +11,13 @@
 執行 Android lint：
 
 ```powershell
-.\gradlew.bat lintDebug
+.\gradlew.bat lintPrerelease
 ```
 
-編譯 App 與 AndroidTest APK：
+編譯啟用 R8 且使用 Debug 金鑰簽署的測試發行 APK：
 
 ```powershell
-.\gradlew.bat assembleDebug assembleDebugAndroidTest
+.\gradlew.bat assemblePrerelease
 ```
 
 連接實機或啟動模擬器後執行 instrumented tests：
@@ -29,7 +29,8 @@
 報告位置：
 
 - 單元測試：`app/build/reports/tests/testDebugUnitTest/index.html`
-- Lint：`app/build/reports/lint-results-debug.html`
+- Lint：`app/build/reports/lint-results-prerelease.html`
+- 測試發行 APK：`app/build/outputs/apk/prerelease/app-prerelease.apk`
 - AndroidTest：`app/build/reports/androidTests/connected/debug/index.html`
 
 ## 手動功能檢查

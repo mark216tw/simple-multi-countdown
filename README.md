@@ -20,9 +20,9 @@
 
 ## 安裝 APK
 
-最新 Debug 測試版可從 [GitHub Releases](https://github.com/mark216tw/simple-multi-countdown/releases/tag/v1.3.0-debug) 下載。此版本標示為 Pre-release，不是正式發布版本。
+最新測試發行版可從 [GitHub Releases](https://github.com/mark216tw/simple-multi-countdown/releases/tag/v1.3.0-debug) 下載。此版本標示為 Pre-release，不是正式發布版本。
 
-本機執行 Debug 建置後，APK 位於 `app/build/outputs/apk/debug/app-debug.apk`。這些 APK 使用 Android Debug 簽章，只適合測試，不應當作正式商店發布版本。
+GitHub 提供的 APK 使用 `prerelease` Build Type、啟用 R8 壓縮，並以 Android Debug 金鑰簽署，只適合測試，不應當作正式商店發布版本。
 
 ## 技術
 
@@ -37,15 +37,15 @@
 需要 Java 17 與 Android SDK 36。
 
 ```powershell
-.\gradlew.bat assembleDebug
+.\gradlew.bat assemblePrerelease
 ```
 
-本機建置產生的 APK 位於 `app/build/outputs/apk/debug/app-debug.apk`。
+本機建置產生的 APK 位於 `app/build/outputs/apk/prerelease/app-prerelease.apk`。
 
 ## 驗證
 
 ```powershell
-.\gradlew.bat testDebugUnitTest lintDebug assembleDebugAndroidTest
+.\gradlew.bat testDebugUnitTest lintPrerelease assemblePrerelease
 ```
 
 通知、鬧鈴、鎖屏與重新開機行為仍應在 Android 13 以上實機進行最終驗收。
